@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      
+      <title>Github</title>
+</head>
+<body> 
+      <h1> Github Users</h1>
+      <button id="fetch">Fetch Data</button>
+      <section id="info"></section>
+
+      <div><li>
+
+
+
+
+            <script>
+                  document.getElementById('fetch').addEventListener('click',loadm);
+                
+                  function loadm(){
+                        var req=new XMLHttpRequest();
+                        req.open('GET','https://api.github.com/users');
+      
+                        req.onload=function(){
+                              if(req.status==200){
+                                    // for (var i=0;i<5;i++){
+
+                                    
+                                 var data=JSON.parse(req.responseText);
+                                 for (var i=0;i<5;i++){
+                                   var url=data[i].avatar_url ;
+                                    var id=data[i].id;
+                                    var login=data[i].login;
+
+                                    var display="Avatar:"+'<img src='+'"'+url+'"'+'height=120px'+' width=110px'+'>'+" "+"ID:"+id+"  "+"Login: "+login;
+                                    document.getElementById('info').innerHTML=display;
+
+                                   }
+                       
+                       
+      
+                              }
+                            
+      
+                        }
+                        req.send();
+      
+                       
+                  }
+            </script>
+            </li>
+      
+    
+</body>
+</html>
